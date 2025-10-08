@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نویسو - ثبت‌نام</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            border: var(--border-width) solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 48px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: var(--shadow-hard);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .auth-logo {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: var(--border-width) solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .auth-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .auth-divider::before {
+            margin-left: 12px;
+        }
+
+        .auth-divider::after {
+            margin-right: 12px;
+        }
+
+        .social-login-btn {
+            width: 100%;
+            padding: 14px;
+            border: var(--border-width) solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-login-btn:hover {
+            background: var(--bg-secondary);
+            transform: translateY(-2px);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+
+        .checkbox-group label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checkbox-group label a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .checkbox-group label a:hover {
+            text-decoration: underline;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .password-strength {
+            font-size: 13px;
+            margin-top: -16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .strength-indicator {
+            height: 4px;
+            flex: 1;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .strength-bar.weak {
+            width: 33%;
+            background: #ff4444;
+        }
+
+        .strength-bar.medium {
+            width: 66%;
+            background: #ffbb33;
+        }
+
+        .strength-bar.strong {
+            width: 100%;
+            background: #00C851;
+        }
+
+        @media (max-width: 640px) {
+            .auth-card {
+                padding: 32px 24px;
+            }
+
+            .auth-logo {
+                font-size: 36px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-logo">نویسو</h1>
+                <p class="auth-subtitle">حساب کاربری جدید ایجاد کنید</p>
+            </div>
+
+            <form class="auth-form" id="signup-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">نام</label>
+                        <input type="text" class="form-input" placeholder="نام" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">نام خانوادگی</label>
+                        <input type="text" class="form-input" placeholder="نام خانوادگی" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">ایمیل</label>
+                    <input type="email" class="form-input" id="email-input" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">رمز عبور</label>
+                    <input type="password" class="form-input" id="password-input" placeholder="حداقل ۸ کاراکتر" required minlength="8">
+                </div>
+
+                <div class="password-strength">
+                    <span id="strength-text" style="color: var(--text-secondary); font-size: 12px;">قدرت رمز عبور:</span>
+                    <div class="strength-indicator">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">تکرار رمز عبور</label>
+                    <input type="password" class="form-input" id="confirm-password-input" placeholder="رمز عبور را دوباره وارد کنید" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms-checkbox" required>
+                    <label for="terms-checkbox">
+                        <a href="#">قوانین و مقررات</a> و <a href="#">سیاست حفظ حریم خصوصی</a> را مطالعه کرده و می‌پذیرم
+                    </label>
+                </div>
+
+                <button type="submit" class="button-primary" style="width: 100%;">ثبت‌نام</button>
+            </form>
+
+            <div class="auth-divider">یا ثبت‌نام با</div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <button class="social-login-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    ثبت‌نام با گوگل
+                </button>
+
+            </div>
+
+            <div class="auth-footer">
+                قبلاً ثبت‌نام کرده‌اید؟
+                <a href="login.html">وارد شوید</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setupThemeSwitcher();
+
+            const passwordInput = document.getElementById('password-input');
+            const confirmPasswordInput = document.getElementById('confirm-password-input');
+            const strengthBar = document.getElementById('strength-bar');
+            const strengthText = document.getElementById('strength-text');
+            const signupForm = document.getElementById('signup-form');
+
+            // Password strength checker
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+
+                if (password.length >= 8) strength++;
+                if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+                if (password.match(/[0-9]/)) strength++;
+                if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+                strengthBar.className = 'strength-bar';
+                if (strength === 0 || strength === 1) {
+                    strengthBar.classList.add('weak');
+                    strengthText.textContent = 'قدرت رمز عبور: ضعیف';
+                } else if (strength === 2 || strength === 3) {
+                    strengthBar.classList.add('medium');
+                    strengthText.textContent = 'قدرت رمز عبور: متوسط';
+                } else {
+                    strengthBar.classList.add('strong');
+                    strengthText.textContent = 'قدرت رمز عبور: قوی';
+                }
+            });
+
+            // Form submission
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                if (password !== confirmPassword) {
+                    alert('رمز عبور و تکرار آن یکسان نیستند!');
+                    return;
+                }
+
+                // در اینجا می‌توانید درخواست API برای ثبت‌نام ارسال کنید
+                alert('در حال ایجاد حساب کاربری...');
+                // پس از موفقیت ثبت‌نام:
+                window.location.href = 'notebooks.html';
+            });
+        });
+    </script>
+</body>
+</html>
