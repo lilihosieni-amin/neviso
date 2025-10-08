@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نویسو - آپلود فایل</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+    <div class="app-container">
+        <aside class="sidebar-container">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo">نویسو</div>
+                    <button class="sidebar-toggle" id="sidebar-toggle" title="جمع‌کردن منو">
+                        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+                    </button>
+                </div>
+
+                <div class="user-profile">
+                    <div class="user-avatar">س</div>
+                    <div class="user-name">سارا احمدی</div>
+                    <div class="user-plan">پلن ماهانه</div>
+                </div>
+
+                <nav class="nav-menu">
+                    <a href="notebooks.html" class="nav-item">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        <span>دفترها</span>
+                    </a>
+                    <a href="all-notes.html" class="nav-item">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2H5a2 2 0 00-2 2v2m14 0H5"/></svg>
+                        <span>همه جزوه‌ها</span>
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        <span>پروفایل</span>
+                    </a>
+                    <a href="plans.html" class="nav-item">
+                        <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>پلن‌ها</span>
+                    </a>
+                </nav>
+
+                <a href="upload.html" class="add-button">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z"></path></svg>
+                    <span>آپلود جدید</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content-wrapper">
+            <div class="content-container">
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-title">آپلود فایل صوتی</h1>
+                        <p class="page-subtitle">فایل‌های صوتی خود را برای تبدیل به جزوه انتخاب کنید</p>
+                    </div>
+                </div>
+
+                <div class="upload-layout-grid">
+                    <div class="upload-form-container">
+                        <div class="upload-form">
+                            <div class="form-group">
+                                <label class="form-label">انتخاب دفتر</label>
+                                <div class="form-select-wrapper">
+                                    <select class="form-select" id="notebook-select"><option value="">انتخاب کنید...</option></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">تاریخ جلسه</label>
+                                <input type="text" class="form-input" id="session-date-jalali" placeholder="مثال: 1404/07/07" maxlength="10" inputmode="numeric">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="button-secondary" onclick="window.location.href='notebooks.html'">انصراف</button>
+                                <button class="button-primary" onclick="uploadFile()">شروع تبدیل</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-upload-container">
+                        <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()">
+                            <div class="upload-icon">🎤</div>
+                            <div class="upload-text">فایل‌ها را اینجا بکشید یا کلیک کنید</div>
+                            <div class="upload-hint">فایل‌های صوتی و تصویری پشتیبانی می‌شوند</div>
+                        </div>
+                        <input type="file" id="file-input" accept="audio/*,image/jpeg,image/png,image/gif" style="display: none;" multiple onchange="handleFileSelect(event)">
+
+                        <div class="file-list-container">
+                            <div class="file-list-header">فایل‌های انتخاب شده (<span id="file-count">0</span>)</div>
+                            <div id="file-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="mobile-nav">
+        <a href="notebooks.html" class="mobile-nav-item">
+            <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span>دفترها</span>
+        </a>
+        <a href="all-notes.html" class="mobile-nav-item">
+             <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2H5a2 2 0 00-2 2v2m14 0H5"/></svg>
+            <span>جزوه‌ها</span>
+        </a>
+
+        <a href="upload.html" class="mobile-fab">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z"></path></svg>
+        </a>
+
+        <a href="profile.html" class="mobile-nav-item">
+            <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>پروفایل</span>
+        </a>
+        <a href="plans.html" class="mobile-nav-item">
+            <svg fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>پلن‌ها</span>
+        </a>
+    </nav>
+
+    <div class="modal-overlay" id="add-notebook-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal-btn">&times;</button>
+            <div class="modal-header">ساخت دفتر جدید</div>
+            <form id="add-notebook-form">
+                <div class="form-group">
+                    <label for="new-notebook-name" class="form-label">نام دفتر</label>
+                    <input type="text" id="new-notebook-name" class="form-input" placeholder="مثال: ریاضی ۱" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="button-secondary" id="cancel-modal-btn">انصراف</button>
+                    <button type="submit" class="button-primary">ساختن</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        let uploadedFiles = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeData();
+            setupSidebarToggle();
+            setupThemeSwitcher();
+            setupUploadArea();
+            populateNotebookSelect();
+            setupDateInput();
+            setupNotebookSelectListener();
+            setupModal();
+        });
+
+        function populateNotebookSelect() {
+            const select = document.getElementById('notebook-select');
+            if (!select) return;
+            select.innerHTML = '<option value="">انتخاب کنید...</option>';
+
+            const newNotebookOption = document.createElement('option');
+            newNotebookOption.value = 'new';
+            newNotebookOption.textContent = '+ ساخت دفتر جدید';
+            select.appendChild(newNotebookOption);
+
+            notebooks.forEach(notebook => {
+                const option = document.createElement('option');
+                option.value = notebook.id;
+                option.textContent = notebook.title;
+                select.appendChild(option);
+            });
+        }
+
+        function setupUploadArea() {
+            const uploadArea = document.getElementById('upload-area');
+            if (!uploadArea) return;
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, () => uploadArea.classList.add('dragover'));
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, () => uploadArea.classList.remove('dragover'));
+            });
+
+            uploadArea.addEventListener('drop', e => {
+                handleFiles(e.dataTransfer.files);
+            });
+        }
+
+        function handleFileSelect(event) {
+            handleFiles(event.target.files);
+            event.target.value = '';
+        }
+
+        function handleFiles(files) {
+            if (!files) return;
+            [...files].forEach(file => {
+                if (!uploadedFiles.some(f => f.name === file.name && f.size === file.size)) {
+                    uploadedFiles.push(file);
+                }
+            });
+            renderFileList();
+        }
+
+        function renderFileList() {
+            const fileListContainer = document.getElementById('file-list');
+            const fileCountSpan = document.getElementById('file-count');
+            if (!fileListContainer || !fileCountSpan) return;
+
+            fileListContainer.innerHTML = '';
+            fileCountSpan.textContent = uploadedFiles.length;
+
+            if (uploadedFiles.length === 0) {
+                fileListContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); font-size: 14px;">هیچ فایلی انتخاب نشده است.</p>';
+                return;
+            }
+
+            uploadedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <span class="file-name" title="${file.name}">${file.name}</span>
+                    <span class="file-size">${formatFileSize(file.size)}</span>
+                    <button class="remove-file-btn" onclick="removeFile(${index})" title="حذف فایل">&times;</button>
+                `;
+                fileListContainer.appendChild(fileItem);
+            });
+        }
+
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            renderFileList();
+        }
+
+        function uploadFile() {
+            const notebookSelect = document.getElementById('notebook-select').value;
+            if (!notebookSelect) {
+                alert('لطفا دفتر را انتخاب کنید.');
+                return;
+            }
+            if (uploadedFiles.length === 0) {
+                alert('لطفا حداقل یک فایل را برای آپلود انتخاب کنید.');
+                return;
+            }
+            alert(`در حال پردازش ${uploadedFiles.length} فایل...\nاین فرآیند ممکن است چند دقیقه طول بکشد.`);
+            uploadedFiles = [];
+            renderFileList();
+            window.location.href = 'notebooks.html';
+        }
+
+        function setupDateInput() {
+            const dateInput = document.getElementById('session-date-jalali');
+            if (dateInput) {
+                dateInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    let formattedValue = '';
+                    if (value.length > 0) {
+                        formattedValue = value.substring(0, 4);
+                    }
+                    if (value.length > 4) {
+                        formattedValue += '/' + value.substring(4, 6);
+                    }
+                    if (value.length > 6) {
+                        formattedValue += '/' + value.substring(6, 8);
+                    }
+                    e.target.value = formattedValue;
+                });
+            }
+        }
+
+        function setupNotebookSelectListener() {
+            const notebookSelect = document.getElementById('notebook-select');
+            if (notebookSelect) {
+                notebookSelect.addEventListener('change', function() {
+                    if (this.value === 'new') {
+                        const addNotebookModal = document.getElementById('add-notebook-modal');
+                        addNotebookModal.classList.add('active');
+                        this.value = '';
+                    }
+                });
+            }
+        }
+
+        function setupModal() {
+            const addNotebookModal = document.getElementById('add-notebook-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const cancelModalBtn = document.getElementById('cancel-modal-btn');
+            const addNotebookForm = document.getElementById('add-notebook-form');
+
+            closeModalBtn.addEventListener('click', () => addNotebookModal.classList.remove('active'));
+            cancelModalBtn.addEventListener('click', () => addNotebookModal.classList.remove('active'));
+
+            addNotebookModal.addEventListener('click', (e) => {
+                if (e.target === addNotebookModal) {
+                    addNotebookModal.classList.remove('active');
+                }
+            });
+
+            addNotebookForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newName = document.getElementById('new-notebook-name').value;
+                if (newName.trim()) {
+                    const newNotebook = {
+                        id: Date.now(), title: newName, noteCount: 0,
+                        date: new Date().toLocaleDateString('fa-IR-u-nu-latn').replace(/\//g, '/')
+                    };
+                    notebooks.push(newNotebook);
+                    saveData();
+                    populateNotebookSelect();
+                    addNotebookModal.classList.remove('active');
+                    addNotebookForm.reset();
+
+                    const select = document.getElementById('notebook-select');
+                    select.value = newNotebook.id;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
